@@ -33,3 +33,20 @@ once you master these patterns, you will see the world of coding differently.
 
 # Difference between organized and unorganized code?
 - 
+
+# What makes a good architecture ?
+1. Loose coupling
+   - weak knowledge association between components
+   - changes to one component least affect existence or performance of another component.
+2. Separation of concerns
+    - breaking your architecture into tiers:
+     presentation layer, bussiness layer, 
+3. Law of demeter (LoD): principle of least knowledge.
+
+# SOLID principles
+1. single responsibility principle
+2. open/close principle
+3. The liskov substitution principle
+4. The interface segregation principle
+5. The dependency inversion principle
+
