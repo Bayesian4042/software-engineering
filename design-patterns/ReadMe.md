@@ -44,9 +44,20 @@ once you master these patterns, you will see the world of coding differently.
 3. Law of demeter (LoD): principle of least knowledge.
 
 # SOLID principles
-1. single responsibility principle
-2. open/close principle
-3. The liskov substitution principle
-4. The interface segregation principle
-5. The dependency inversion principle
+1. single responsibility principle: 
+- There should never be more than one reason for a class to change. Each class should have only one central responsibility. For example it should only deal with persistence or persistance, or only logging, or only notification or only error handling.
+
+2. open/close principle: 
+- Should be open for extension, closed for modification.
+- For example, you have calculator class which has add, sub, div, mul methods. Now, when you have to add scientifc calculator, you should not modify but rather extend this class to support scientific operations. There can be new class which extends the calculator class.
+
+3. The liskov substitution principle: 
+- Function that use pointers or references to base class, must be able to use objects of derived classes without knowing it. 
+
+4. The interface segregation principle: 
+- Clients should not be forced to depend upon interfaces that they don't use.
+- Declaring methods in an interface that the caller doesn't need pollutes the interface and leads to bulky or fat interface.
+- 
+
+5. The dependency inversion principle: depends on abstraction, not on concretion.
 
