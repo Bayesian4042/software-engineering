@@ -27,4 +27,4 @@ class TaskInput:
     @staticmethod
     def input_task():
         task = input("Enter task: ")
-        self.task_manager.add_task(task)
+        return task
