@@ -29,7 +29,7 @@ once you master these patterns, you will see the world of coding differently.
 # Why use UML?
 - UML is good tool to document something as well defined as Design Patterns. UML communicates design pattern structure very well. 
     - class Diagram
-    - sequence diagrma
+    - sequence Diagram
 
 # Difference between organized and unorganized code?
 - 
