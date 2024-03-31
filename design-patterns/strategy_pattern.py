@@ -1,54 +1,66 @@
 """
 Strategy Pattern is a behavioral design pattern that enables selecting an algorithm at runtime.
 The main idea of strategy pattern is to extract related algorithms into separate classes and define a common interface for them.
+
+Let's consider of system that calculated shipping cost for orders on e-commerce website.
 """
 
 from abc import ABC, abstractmethod
 
-class TravelStrategy(ABC):
-    @abstractmethod
-    def calculate_time(self, distance: float) -> float:
+"""
+Example without using Strategy Pattern
+Without using the Strategy pattern, you might find yourself writing a monolithic shipping cost calculator, 
+stuffed with conditionals (if, else if, else) to handle the myriad of combinations of these factors. 
+This approach quickly becomes hard to manage, error-prone, and a nightmare to test and extend. 
+For instance, adding a new shipping method would require modifying the existing code, increasing the risk of introducing bugs.
+"""
+
+class ShippingCostCalculator:
+    def calculate_shipping_cost(self, order, carrier, delivery_speed):
+        if carrier == "UPS":
+            if delivery_speed == "standard":
+                # Complex logic for UPS standard
+                return 20
+            elif delivery_speed == "express":
+                # Complex logic for UPS express
+                return 40
+        elif carrier == "FedEx":
+            # Similar branching for FedEx...
+            pass
+        # And so on for other carriers and conditions
+
+"""
+Above approach has several drawbacks, primarily due to its inflexibility and the high cost of maintenance.
+Introducing a new carrier or changing the pricing strategy would require modifying the ShippingCostCalculator class, violating the Open/Closed Principle.
+"""
+
+class ShippingStrategy:
+    def calculate(self, order) -> float:
         pass
 
-class CarStrategy(TravelStrategy):
-    def calculate_time(self, distance: float) -> float:
-        # Assuming average speed is 60 km/h
-        return distance / 60
+class UPSShippingStrategy(ShippingStrategy):
+    def calculate(self, order) -> float:
+        # Logic for calculating UPS shipping cost
+        return 20  # Simplified for example purposes
 
-class BikeStrategy(TravelStrategy):
-    def calculate_time(self, distance: float) -> float:
-        # Assuming average speed is 15 km/h
-        return distance / 15
+class FedExShippingStrategy(ShippingStrategy):
+    def calculate(self, order) -> float:
+        # Logic for calculating FedEx shipping cost
+        return 25  # Simplified for example purposes
 
-class WalkStrategy(TravelStrategy):
-    def calculate_time(self, distance: float) -> float:
-        # Assuming average speed is 5 km/h
-        return distance / 5
-
-
-class TravelPlanner:
-    def __init__(self, strategy: TravelStrategy):
+class ShippingCost:
+    def __init__(self, strategy: ShippingStrategy):
         self._strategy = strategy
 
-    def set_strategy(self, strategy: TravelStrategy):
-        self._strategy = strategy
-
-    def calculate_travel_time(self, distance: float) -> float:
-        return self._strategy.calculate_time(distance)
-
+    def calculate(self, order) -> float:
+        return self._strategy.calculate(order)
 
 def main():
-    distance = 120  # Distance in kilometers
+    order = {"weight": 5, "destination": "New York"}
 
-    planner = TravelPlanner(CarStrategy())
-    print(f"Travel time by car: {planner.calculate_travel_time(distance)} hours")
+    # Client code can dynamically choose the strategy at runtime
+    ups = ShippingCost(UPSShippingStrategy())
+    print("UPS Shipping Cost:", ups.calculate(order))
 
-    planner.set_strategy(BikeStrategy())
-    print(f"Travel time by bike: {planner.calculate_travel_time(distance)} hours")
-
-    planner.set_strategy(WalkStrategy())
-    print(f"Travel time by walking: {planner.calculate_travel_time(distance)} hours")
-
-if __name__ == "__main__":
-    main()
-
+    fedex = ShippingCost(FedExShippingStrategy())
+    print("FedEx Shipping Cost:", fedex.calculate(order))
