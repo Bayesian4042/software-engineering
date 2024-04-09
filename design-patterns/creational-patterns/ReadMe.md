@@ -1,14 +1,22 @@
-# Singleton Pattern
-Singleton Pattern is creational design pattern that ensures that,
-a class has only one instance and provides a global point of access to it.
-All the client will get the same instance of the class.
+# Patterns
 
-## What is good for?
-- When you want controller the access to shared resource like loggers, caching, Thread pools, Database connection, configuration access. 
+## Prototype Pattern
+A fully initialized instance to be copied or cloned.
+Example: Chess game -> initial setup can be stored as a prototype. when someone creates new game, we can clone this. 
 
-- This pattern is used with other patterns like Abstract factory, builder etc
-- make sure it follows SRP.
-- make sure controll is properly controlled and locked in multi-thread env. 
+## Builder Pattern
+Separates object construction from its representation. hides complex internal structure. 
+Example: chess game -> objects like bishop, Pawn can be separated.
+
+## Singleton Pattern
+A class of which only single instance can exist.
+For example: chess game -> King is singleton. -> only one instance. 
+
+- difficult to unit test
+- In spring, all beans are singleton
+
+## Factory Pattern
+
 
 
 
