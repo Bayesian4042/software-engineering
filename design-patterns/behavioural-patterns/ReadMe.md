@@ -1,0 +1,1 @@
+How object talks to another objects.
