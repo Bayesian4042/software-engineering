@@ -28,31 +28,37 @@ As a Vendor, When I login on Murb using mobile number and otp, I should be succe
     - When user enters invalid otp, it get response {“status": “401", “message": “invalid otp”, data: {}}.
 
 ## API Specification
-Endpoint: POST /api/auth/register
-Description: Register a new user with email or mobile number and OTP.
-Request Body:
-{
-    "identifier": "string", // email or mobile number
-    "otp": "string"
-}
-
-Response Body:
-201 Created: User registered successfully
-{
-    "status": "201",
-    "message": "User registered successfully",
-    "data": {
-        "user": {
-            "id": "string",
-            "email": "string",
-            "mobile": "string"
+    - Endpoint: POST /api/auth/register
+    - Description: Register a new user with email or mobile number and OTP.
+    - Request Body:
+        ```
+        {
+            "identifier": "string", // email or mobile number
+            "otp": "string"
         }
-    }
-}
+        ```
 
-401 Unauthorized: Invalid OTP
-{
-    "status": "401",
-    "message": "Invalid OTP",
-    "data": {}
-}
+    - Response Body:
+        - 201 Created: User registered successfully
+        ```
+        {
+            "status": "201",
+            "message": "User registered successfully",
+            "data": {
+                "user": {
+                    "id": "string",
+                    "email": "string",
+                    "mobile": "string"
+                }
+            }
+        }
+        ```
+
+        - 401 Unauthorized: Invalid OTP
+        ```
+        {
+            "status": "401",
+            "message": "Invalid OTP",
+            "data": {}
+        }
+        ```
